@@ -1,5 +1,4 @@
 # SuperScript
-lib/*
 logs/*
 test/fixtures/cache/*
 coverage/*
