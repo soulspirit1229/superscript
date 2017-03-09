@@ -1,4 +1,5 @@
 const addMessageProp = function addMessageProp(key, value, callback) {
+  console.log("message prop key: %s, value:%s", key,value);
   if (key !== '' && value !== '') {
     return callback(null, { [key]: value });
   }

@@ -4,6 +4,7 @@ import utils from '../bot/utils';
 
 const debug = debuglog('Word Plugin');
 
+//用的wordnet?
 const plural = function plural(word, cb) {
   // Sometimes WordNet will give us more then one word
   let reply;
@@ -18,6 +19,7 @@ const plural = function plural(word, cb) {
   cb(null, reply);
 };
 
+// not的使用：{^not("filter|filterx")} 不包括filter和filterx
 const not = function not(word, cb) {
   const words = word.split('|');
   const results = utils.inArray(this.message.words, words);

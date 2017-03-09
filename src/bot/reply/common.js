@@ -2,6 +2,7 @@ import debuglog from 'debug-levels';
 
 const debug = debuglog('SS:ProcessHelpers');
 
+//从chatsystem中获取topic
 const getTopic = async function getTopic(chatSystem, name) {
   if (!name) {
     // TODO: This should probably throw, not return null

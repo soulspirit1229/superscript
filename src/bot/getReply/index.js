@@ -155,6 +155,8 @@ const matchItorHandle = async function matchItorHandle(match, message, options) 
 
   debug.verbose('Match itor: ', match.gambit);
 
+  //why get topic name again? 
+  //need to decide keep or exhaust in the topic tree
   const topic = await helpers.getRootTopic(match.gambit, system.chatSystem);
 
   let stars = match.stars;

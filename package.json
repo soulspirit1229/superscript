@@ -55,7 +55,7 @@
     "safe-eval": "^0.3.0",
     "sfacts": "^1.0.1",
     "ss-message": "^1.1.0",
-    "ss-parser": "^1.0.0",
+    "ss-parser": "git://github.com/soulspirit1229/ss-parser.git#master",
     "syllablistic": "^0.1.0",
     "wordpos": "^1.1.2"
   },

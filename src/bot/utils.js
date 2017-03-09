@@ -69,6 +69,7 @@ const replaceCapturedText = (strings, caps) => strings
       .filter(s => !_.isEmpty(s))
       .map(s => s.replace(regexes.captures, (m, p1) => caps[Number.parseInt(p1 || 1)]));
 
+
 const runPluginFunc = async function runPluginFunc(functionRegex, scope, plugins) {
   const pluginFunction = functionRegex.match(regexes.filter);
   const functionName = pluginFunction[1];

@@ -34,12 +34,17 @@ const hasItem = function hasItem(key, bool, cb) {
   const memory = this.user.memory;
   const userId = this.user.id;
 
+  if (!!!bool) {
+    bool = 'true';
+  };
+
+
   debug('getVar', key, bool, userId);
   memory.db.get({ subject: key, predicate: userId }, (err, res) => {
     if (!_.isEmpty(res)) {
-      cb(null, (bool === 'true'));
+      cb(null, (bool === 'true' || bool === true));
     } else {
-      cb(null, (bool === 'false'));
+      cb(null, (bool === 'false' || bool === false));
     }
   });
 };
@@ -99,6 +104,7 @@ const createUserFact = function createUserFact(subject, predicate, object, cb) {
   });
 };
 
+//是不是认识这个用户？
 const known = function known(bool, cb) {
   const memory = this.user.memory;
   const name = (this.message.names && !_.isEmpty(this.message.names)) ? this.message.names[0] : '';

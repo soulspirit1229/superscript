@@ -3,6 +3,11 @@ lib/*
 logs/*
 test/fixtures/cache/*
 coverage/*
+clients/*
+chat/*
+data.json
+plugins/*
+rebuild.sh
 
 # Node
 node_modules/*
@@ -20,3 +25,4 @@ dump/*
 # IDEA/WebStorm Project Files
 .idea
 *.iml
+

@@ -8,11 +8,13 @@ const debug = debuglog('SS:Topics');
 
 const TfIdf = natural.TfIdf;
 
+
 natural.PorterStemmer.attach();
 
 // Function to score the topics by TF-IDF
 const scoreTopics = function scoreTopics(message, tfidf) {
   let topics = [];
+  // need support chinese character 
   const tasMessage = message.lemString.tokenizeAndStem();
   debug.verbose('Tokenised and stemmed words: ', tasMessage);
 
@@ -159,6 +161,7 @@ export const findPendingTopicsForUser = async function findPendingTopicsForUser(
 
 const getPendingTopics = async function getPendingTopics(messageObject, options) {
   // We already have a pre-set list of potential topics from directReply, respond or topicRedirect
+  //如果pendingTopics中已经有topic了，说明topic的值已经内定了
   if (!_.isEmpty(_.reject(options.pendingTopics, _.isNull))) {
     debug.verbose('Using pre-set topic list via directReply, respond or topicRedirect');
     debug.info('Topics to check: ', options.pendingTopics.map(topic => topic.name));

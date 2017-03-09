@@ -44,6 +44,7 @@ class SuperScript {
     this.chatSystem.User.find({}, 'id', callback);
   }
 
+  //SLICE HISTORY 10
   getUser(userId, callback) {
     this.chatSystem.User.findOne({ id: userId })
       .slice('history', 10)
@@ -154,7 +155,7 @@ class SuperScript {
               };
 
               const newClientObject = _.merge(clientObject, replyObj.props || {});
-
+              debug.verbose("new client Object %s",JSON.stringify(newClientObject));
               debug.verbose("Update and Reply to user '%s'", user.id, replyObj.string);
               debug.info("[ Final Reply - '%s']- '%s'", user.id, replyObj.string);
 
@@ -306,3 +307,16 @@ const setup = function setup(options = {}, callback) {
 export default {
   setup,
 };
+
+// const options = {
+//   factSystem: {
+//     clean: true,
+//   },
+//   importFile: './data.json',
+// };
+
+// setup(options, (err, bot) => {
+//   bot.reply("nero", "贷款", (err, reply) => {
+//     console.log(reply.string);
+//   });
+// });

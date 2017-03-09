@@ -10,6 +10,7 @@ const debug = debuglog('SS:Helpers');
 // This will find all the gambits to process by parent (topic or conversation)
 // and return ones that match the message
 const findMatchingGambitsForMessage = async function findMatchingGambitsForMessage(type, parent, message, options) {
+
   const matches = await Promise.all(parent.gambits.map(async (gambit) => {
     const match = await eachGambitHandle(gambit, message, options);
     return match;
@@ -209,6 +210,8 @@ const walkGambitParent = async function walkGambitParent(gambitId, chatSystem) {
   return gambitIds;
 };
 
+//把reply中的所有replyids都放入到数组中,顺序是 self replyIds <==  parent parent replyIds
+//reply的parent是gambit，gambit的parent是reply
 const walkReplyParent = async function walkReplyParent(replyId, chatSystem) {
   const replyIds = [];
   try {
@@ -238,6 +241,7 @@ const getRootTopic = async function getRootTopic(gambit, chatSystem) {
 
   const gambits = await walkGambitParent(gambit._id, chatSystem);
   if (gambits.length !== 0) {
+    debug.verbose('getRootTopic: original gambit id: %s , walk through gambit parent: gambits', gambit._id, gambits);
     return chatSystem.Topic.findOne({ gambits: { $in: [gambits.pop()] } }).lean().exec();
   }
 

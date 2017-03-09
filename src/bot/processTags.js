@@ -185,6 +185,14 @@ const preprocess = async function preprocess(reply, replyObj, options) {
   return cleanTags.join('');
 };
 
+//处理当前replyobj和redirect之后的replyObject的关系
+//1. 使用子reply的continueMatching
+//2. 使用父reply的clearConversation
+//3. 使用子的topicName
+//4. merge props
+//5. 将子的replyId放到父的replyid中
+//6. replyObj的subReplies
+//7. 使用子的debug模式
 const postAugment = function postAugment(replyObject, augmentedReplyObject) {
   replyObject.continueMatching = augmentedReplyObject.continueMatching;
   replyObject.clearConversation = replyObject.clearConversation || augmentedReplyObject.clearConversation;
@@ -352,6 +360,10 @@ const processSetState = function processSetState(tag, replyObj, options) {
   return '';
 };
 
+
+//Respond = reply to same user message in a different topic
+//Topic redirect = reply to different user message in a different topic
+//Inline redirect = reply to different user message in the same topic
 const processTag = async function processTag(tag, replyObj, options) {
   if (typeof tag === 'string') {
     return tag;
